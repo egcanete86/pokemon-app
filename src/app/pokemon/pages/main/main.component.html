@@ -1,0 +1,18 @@
+<h1 *ngIf="!pokemon; else elseBlock"></h1>
+
+
+<ng-template #elseBlock>
+    <h1>¿Quién es este pokémon?</h1>
+
+    <app-pokemon-picture [pokemonId]="pokemon!.id" [showPokemon]="showPokemon"></app-pokemon-picture>
+
+    <app-pokemon-options *ngIf="!showAnswer" [pokemons]="pokemonArr" (selectPokemon)="checkAnswer($event)">
+    </app-pokemon-options>
+
+    <div *ngIf="showAnswer">
+        <h2 class="fade-in">{{ message }}</h2>
+        <button (click)="newGame()">
+            Nuevo Juego
+        </button>
+    </div>
+</ng-template>
